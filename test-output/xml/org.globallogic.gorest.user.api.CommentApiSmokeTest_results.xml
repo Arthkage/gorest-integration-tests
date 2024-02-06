@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="gorest-integration-tests"
+           tests="5"
+           failures="0"
+           errors="0"
+           skipped="0"
+           time="2.726">
+  <properties />
+  
+  
+            <testcase name="testDeleteComment" time="0.769" classname="org.globallogic.gorest.api.CommentApiSmokeTest" />
+                <testcase name="testCreatingComments" time="0.372" classname="org.globallogic.gorest.api.CommentApiSmokeTest" />
+                <testcase name="testGetComments" time="0.377" classname="org.globallogic.gorest.api.CommentApiSmokeTest" />
+                <testcase name="testUpdateComment" time="0.867" classname="org.globallogic.gorest.api.CommentApiSmokeTest" />
+                <testcase name="testGetCommentsFromTargetPage" time="0.341" classname="org.globallogic.gorest.api.CommentApiSmokeTest" />
+      
+</testsuite>

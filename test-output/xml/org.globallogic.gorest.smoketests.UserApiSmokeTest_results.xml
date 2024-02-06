@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="gorest-integration-tests"
+           tests="5"
+           failures="0"
+           errors="0"
+           skipped="0"
+           time="2.985">
+  <properties />
+  
+  
+            <testcase name="testGetLatestUsers" time="0.368" classname="org.globallogic.gorest.smoketests.UserApiSmokeTest" />
+                <testcase name="testDeleteTargetUser" time="0.790" classname="org.globallogic.gorest.smoketests.UserApiSmokeTest" />
+                <testcase name="testGetUsersFromTargetPage" time="0.676" classname="org.globallogic.gorest.smoketests.UserApiSmokeTest" />
+                <testcase name="testCreateNewUserAndReturnId" time="0.371" classname="org.globallogic.gorest.smoketests.UserApiSmokeTest" />
+                <testcase name="testUpdatedUserEmail" time="0.780" classname="org.globallogic.gorest.smoketests.UserApiSmokeTest" />
+      
+</testsuite>

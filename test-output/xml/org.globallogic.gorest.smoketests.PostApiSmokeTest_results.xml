@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="gorest-integration-tests"
+           tests="5"
+           failures="0"
+           errors="0"
+           skipped="0"
+           time="4.134">
+  <properties />
+  
+  
+            <testcase name="testCreatePostForTargetUser" time="0.781" classname="org.globallogic.gorest.smoketests.PostApiSmokeTest" />
+                <testcase name="testDeletePostForTargetUser" time="1.449" classname="org.globallogic.gorest.smoketests.PostApiSmokeTest" />
+                <testcase name="testReturnLatestPosts" time="0.351" classname="org.globallogic.gorest.smoketests.PostApiSmokeTest" />
+                <testcase name="testReturnPostsFromTargetPage" time="0.757" classname="org.globallogic.gorest.smoketests.PostApiSmokeTest" />
+                <testcase name="testUpdatePostForTargetUser" time="0.796" classname="org.globallogic.gorest.smoketests.PostApiSmokeTest" />
+      
+</testsuite>

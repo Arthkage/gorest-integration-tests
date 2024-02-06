@@ -1,0 +1,499 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  <meta name="description" content="TestNG unit test results." />
+  <link href="css/bootstrap.min.css" rel="stylesheet" />
+  <link href="css/reportngClass.css" rel="stylesheet" />
+  <script type="text/javascript" src="js/reportngClass.js"></script>
+  <script type="text/javascript" src="js/jquery-1.4.4.min.js"></script> 
+  <script type="text/javascript" src="js/jquery.tablesorter.min.js"></script>
+  <script type="text/javascript" src="js/json-min.js"></script>
+  <script type="text/javascript">
+	$(document).ready(function(){
+		$('.tablesorter').tablesorter({sortList: [[0,0]]});
+	});
+  </script>
+</head>
+<body onload="doParse(); return false;" onkeypress="collapseExpand();">
+<div class="well well-large">
+	<b>Test Info</>
+	<table class="table">
+	  <tr>
+	    <th>Test Name : </th>
+	    <th>
+	    	<div class="tooltipCustom">
+	    		<img src="images/copy.png" width="10" height="15" alt="Copy to Clipboard" onclick="copyToClipboard('#testNameId')"/>
+	    		<span class="tooltiptextCustom">Copy Test name</span>
+			</div>
+	    </th>
+	    <th id="testNameId">gorest-integration-tests</th> 
+	  </tr>
+	  <tr>
+	    <th>Test Class : </th>
+	    <th>
+	    	<div class="tooltipCustom">
+	    		<img src="images/copy.png" width="10" height="15" alt="Copy to Clipboard" onclick="copyToClipboard('#testClassId')"/>
+	    		<span class="tooltiptextCustom">Copy full path Class name</span>
+			</div>
+	    	<div class="tooltipCustom">
+	    		<img src="images/copy.png" width="10" height="15" alt="Copy to Clipboard" onclick="copyToClipboard('#testClassNameId')"/>
+	    		<span class="tooltiptextCustom">Copy Class name</span>
+			</div>
+	    </th> 
+	    <th id="testClassId">org.globallogic.gorest.smoketests.PostApiSmokeTest<br>org.globallogic.gorest.smoketests.ToDoApiSmokeTest<br>org.globallogic.gorest.smoketests.UserApiSmokeTest<br>org.globallogic.gorest.smoketests.CommentApiSmokeTest<br></th>
+	    <th id="testClassNameId" hidden="true">PostApiSmokeTest<br>ToDoApiSmokeTest<br>UserApiSmokeTest<br>CommentApiSmokeTest<br></th>
+	  </tr>
+	  <tr>
+	    <th>Suite Name : </th>
+	    <th>
+	    	<div class="tooltipCustom">
+	    		<img src="images/copy.png" width="10" height="15" alt="Copy to Clipboard" onclick="copyToClipboard('#suiteNameId')"/>
+	    		<span class="tooltiptextCustom">Copy Suite name</span>
+			</div>
+		</th>
+	    <th id="suiteNameId">Default Suite</th>
+	  </tr>
+	  <tr>
+	    <th>Suite XML : </th>
+	    <th>
+	    	<div class="tooltipCustom">
+	    		<img src="images/copy.png" width="10" height="15" alt="Copy to Clipboard" onclick="copyToClipboard('#suiteXMLId')"/>
+	    		<span class="tooltiptextCustom">Copy Suite full path name</span>
+			</div>
+	    	<div class="tooltipCustom">
+	    		<img src="images/copy.png" width="10" height="15" alt="Copy to Clipboard" onclick="copyToClipboard('#suiteXMLNameId')"/>
+	    		<span class="tooltiptextCustom">Copy Suite file name</span>
+			</div>
+	    </th> 
+	  	<th id="suiteXMLId">C:\Users\arthur.kovacs\AppData\Local\JetBrains\IdeaIC2023.3\temp-testng-customsuite.xml</th>
+	  	<th id="suiteXMLNameId" hidden="true">temp-testng-customsuite.xml</th>
+	  </tr>
+	  	  <tr>
+	    <th>Total Time : </th>
+	    <th></th>
+	    <th>00:00:34</th> 
+	  </tr>
+	  <tr>
+	    <th>Total Steps : </th>
+	   	<th></th>
+	    <th>20</th> 
+	  </tr>
+	  <tr>
+	    <th>Status : </th>
+	    <th></th>
+	    <th><font color="green">PASS</font></th> 
+	  </tr>
+	</table>
+</div>
+<div class="well well-large">
+	<div class="row">
+		<div class="col-xs-12">
+	        <div class="text-right">
+	            <button id="hideResults" type="button" class="btn-danger" onclick="collapseExpand(this);" onkeypress="collapseExpand(this);" class="btn pull-right" title="Click or Press Any key to collapse/expand All Failed Tests and Configuration Methods">Show Only Failures</button>
+	        </div>
+	    </div>
+	</div>
+	<table class="tablesorter" border="1">
+		<thead>
+		<tr>
+		<th class="headerTime">Time</th>
+		<th class="headerTime" width="12%">Info</th>
+		<th class="headerTime" width="88%">Test</th>
+		</tr>
+		</thead>
+		<tbody>
+		
+				
+				
+																								
+				
+				
+												<tr>
+			<td class="time">1707133991871</td>
+			<td class="header passed" colspan="4" onClick="toggleElement('fd32c666-eff7-4cfc-8859-a34a65d6c84f','block');changeSingleIcon('span-fd32c666-eff7-4cfc-8859-a34a65d6c84f');" title="Click to expand/collapse" style="cursor: pointer;">
+			<div style="float:left;"><i>Class&nbsp;:&nbsp;</i>org.globallogic.gorest.smoketests.CommentApiSmokeTest</div>
+			<div style="float:right;">@Test @ with DataProvider : [""] &nbsp;&nbsp;<span id='span-fd32c666-eff7-4cfc-8859-a34a65d6c84f' class="glyphicon glyphicon-menu-down"></span></div>
+			</td>
+			</tr>
+			<tr>
+	<td class="time">1707133991871</td>
+	<td class="methodTest">
+		<span class="description"><b>Method: </b>testGetCommentsFromTargetPage</span><br>
+			<span class="description"><b>Description: </b></span><br>
+							<span class="duration"><b>Duration: </b>0.381s</span><br>
+	</td>
+	<td class="result">
+						<div class="stackTrace" id="fd32c666-eff7-4cfc-8859-a34a65d6c84f" style="display: block;">
+					</td>
+	</div>
+</tr>
+						<tr>
+			<td class="time">1707133989889</td>
+			<td class="header passed" colspan="4" onClick="toggleElement('38bb6a4c-f694-4250-9dcf-62db60ac8648','block');changeSingleIcon('span-38bb6a4c-f694-4250-9dcf-62db60ac8648');" title="Click to expand/collapse" style="cursor: pointer;">
+			<div style="float:left;"><i>Class&nbsp;:&nbsp;</i>org.globallogic.gorest.smoketests.CommentApiSmokeTest</div>
+			<div style="float:right;">@Test @ with DataProvider : [""] &nbsp;&nbsp;<span id='span-38bb6a4c-f694-4250-9dcf-62db60ac8648' class="glyphicon glyphicon-menu-down"></span></div>
+			</td>
+			</tr>
+			<tr>
+	<td class="time">1707133989889</td>
+	<td class="methodTest">
+		<span class="description"><b>Method: </b>testGetComments</span><br>
+			<span class="description"><b>Description: </b></span><br>
+							<span class="duration"><b>Duration: </b>0.387s</span><br>
+	</td>
+	<td class="result">
+						<div class="stackTrace" id="38bb6a4c-f694-4250-9dcf-62db60ac8648" style="display: block;">
+					</td>
+	</div>
+</tr>
+						<tr>
+			<td class="time">1707133987162</td>
+			<td class="header passed" colspan="4" onClick="toggleElement('5bf8d6a2-7edb-4981-b37a-58d1b20456e9','block');changeSingleIcon('span-5bf8d6a2-7edb-4981-b37a-58d1b20456e9');" title="Click to expand/collapse" style="cursor: pointer;">
+			<div style="float:left;"><i>Class&nbsp;:&nbsp;</i>org.globallogic.gorest.smoketests.CommentApiSmokeTest</div>
+			<div style="float:right;">@Test @ with DataProvider : [""] &nbsp;&nbsp;<span id='span-5bf8d6a2-7edb-4981-b37a-58d1b20456e9' class="glyphicon glyphicon-menu-down"></span></div>
+			</td>
+			</tr>
+			<tr>
+	<td class="time">1707133987162</td>
+	<td class="methodTest">
+		<span class="description"><b>Method: </b>testDeleteComment</span><br>
+			<span class="description"><b>Description: </b></span><br>
+							<span class="duration"><b>Duration: </b>0.799s</span><br>
+	</td>
+	<td class="result">
+						<div class="stackTrace" id="5bf8d6a2-7edb-4981-b37a-58d1b20456e9" style="display: block;">
+					</td>
+	</div>
+</tr>
+						<tr>
+			<td class="time">1707133984789</td>
+			<td class="header passed" colspan="4" onClick="toggleElement('3d40f787-c252-4c7c-88bd-1afde7f28737','block');changeSingleIcon('span-3d40f787-c252-4c7c-88bd-1afde7f28737');" title="Click to expand/collapse" style="cursor: pointer;">
+			<div style="float:left;"><i>Class&nbsp;:&nbsp;</i>org.globallogic.gorest.smoketests.CommentApiSmokeTest</div>
+			<div style="float:right;">@Test @ with DataProvider : [""] &nbsp;&nbsp;<span id='span-3d40f787-c252-4c7c-88bd-1afde7f28737' class="glyphicon glyphicon-menu-down"></span></div>
+			</td>
+			</tr>
+			<tr>
+	<td class="time">1707133984789</td>
+	<td class="methodTest">
+		<span class="description"><b>Method: </b>testCreatingComments</span><br>
+			<span class="description"><b>Description: </b></span><br>
+							<span class="duration"><b>Duration: </b>0.413s</span><br>
+	</td>
+	<td class="result">
+						<div class="stackTrace" id="3d40f787-c252-4c7c-88bd-1afde7f28737" style="display: block;">
+					</td>
+	</div>
+</tr>
+						<tr>
+			<td class="time">1707133994182</td>
+			<td class="header passed" colspan="4" onClick="toggleElement('836d819d-f08a-4feb-bb57-bc7283f9abb7','block');changeSingleIcon('span-836d819d-f08a-4feb-bb57-bc7283f9abb7');" title="Click to expand/collapse" style="cursor: pointer;">
+			<div style="float:left;"><i>Class&nbsp;:&nbsp;</i>org.globallogic.gorest.smoketests.CommentApiSmokeTest</div>
+			<div style="float:right;">@Test @ with DataProvider : [""] &nbsp;&nbsp;<span id='span-836d819d-f08a-4feb-bb57-bc7283f9abb7' class="glyphicon glyphicon-menu-down"></span></div>
+			</td>
+			</tr>
+			<tr>
+	<td class="time">1707133994182</td>
+	<td class="methodTest">
+		<span class="description"><b>Method: </b>testUpdateComment</span><br>
+			<span class="description"><b>Description: </b></span><br>
+							<span class="duration"><b>Duration: </b>0.876s</span><br>
+	</td>
+	<td class="result">
+						<div class="stackTrace" id="836d819d-f08a-4feb-bb57-bc7283f9abb7" style="display: block;">
+					</td>
+	</div>
+</tr>
+										<tr>
+			<td class="time">1707133972534</td>
+			<td class="header passed" colspan="4" onClick="toggleElement('6751fb3a-7775-4ec3-bace-cabb5dedb908','block');changeSingleIcon('span-6751fb3a-7775-4ec3-bace-cabb5dedb908');" title="Click to expand/collapse" style="cursor: pointer;">
+			<div style="float:left;"><i>Class&nbsp;:&nbsp;</i>org.globallogic.gorest.smoketests.PostApiSmokeTest</div>
+			<div style="float:right;">@Test @ with DataProvider : [""] &nbsp;&nbsp;<span id='span-6751fb3a-7775-4ec3-bace-cabb5dedb908' class="glyphicon glyphicon-menu-down"></span></div>
+			</td>
+			</tr>
+			<tr>
+	<td class="time">1707133972534</td>
+	<td class="methodTest">
+		<span class="description"><b>Method: </b>testUpdatePostForTargetUser</span><br>
+			<span class="description"><b>Description: </b></span><br>
+							<span class="duration"><b>Duration: </b>0.796s</span><br>
+	</td>
+	<td class="result">
+						<div class="stackTrace" id="6751fb3a-7775-4ec3-bace-cabb5dedb908" style="display: block;">
+					</td>
+	</div>
+</tr>
+						<tr>
+			<td class="time">1707133970678</td>
+			<td class="header passed" colspan="4" onClick="toggleElement('48705d7d-75df-473b-8881-726e6a60f7a9','block');changeSingleIcon('span-48705d7d-75df-473b-8881-726e6a60f7a9');" title="Click to expand/collapse" style="cursor: pointer;">
+			<div style="float:left;"><i>Class&nbsp;:&nbsp;</i>org.globallogic.gorest.smoketests.PostApiSmokeTest</div>
+			<div style="float:right;">@Test @ with DataProvider : [""] &nbsp;&nbsp;<span id='span-48705d7d-75df-473b-8881-726e6a60f7a9' class="glyphicon glyphicon-menu-down"></span></div>
+			</td>
+			</tr>
+			<tr>
+	<td class="time">1707133970678</td>
+	<td class="methodTest">
+		<span class="description"><b>Method: </b>testReturnPostsFromTargetPage</span><br>
+			<span class="description"><b>Description: </b></span><br>
+							<span class="duration"><b>Duration: </b>0.757s</span><br>
+	</td>
+	<td class="result">
+						<div class="stackTrace" id="48705d7d-75df-473b-8881-726e6a60f7a9" style="display: block;">
+					</td>
+	</div>
+</tr>
+						<tr>
+			<td class="time">1707133968899</td>
+			<td class="header passed" colspan="4" onClick="toggleElement('6736a6a0-a75b-4745-84a5-2e131706dfad','block');changeSingleIcon('span-6736a6a0-a75b-4745-84a5-2e131706dfad');" title="Click to expand/collapse" style="cursor: pointer;">
+			<div style="float:left;"><i>Class&nbsp;:&nbsp;</i>org.globallogic.gorest.smoketests.PostApiSmokeTest</div>
+			<div style="float:right;">@Test @ with DataProvider : [""] &nbsp;&nbsp;<span id='span-6736a6a0-a75b-4745-84a5-2e131706dfad' class="glyphicon glyphicon-menu-down"></span></div>
+			</td>
+			</tr>
+			<tr>
+	<td class="time">1707133968899</td>
+	<td class="methodTest">
+		<span class="description"><b>Method: </b>testReturnLatestPosts</span><br>
+			<span class="description"><b>Description: </b></span><br>
+							<span class="duration"><b>Duration: </b>0.351s</span><br>
+	</td>
+	<td class="result">
+						<div class="stackTrace" id="6736a6a0-a75b-4745-84a5-2e131706dfad" style="display: block;">
+					</td>
+	</div>
+</tr>
+						<tr>
+			<td class="time">1707133966361</td>
+			<td class="header passed" colspan="4" onClick="toggleElement('79f8971b-cca3-4a56-8717-619546c79085','block');changeSingleIcon('span-79f8971b-cca3-4a56-8717-619546c79085');" title="Click to expand/collapse" style="cursor: pointer;">
+			<div style="float:left;"><i>Class&nbsp;:&nbsp;</i>org.globallogic.gorest.smoketests.PostApiSmokeTest</div>
+			<div style="float:right;">@Test @ with DataProvider : [""] &nbsp;&nbsp;<span id='span-79f8971b-cca3-4a56-8717-619546c79085' class="glyphicon glyphicon-menu-down"></span></div>
+			</td>
+			</tr>
+			<tr>
+	<td class="time">1707133966361</td>
+	<td class="methodTest">
+		<span class="description"><b>Method: </b>testDeletePostForTargetUser</span><br>
+			<span class="description"><b>Description: </b></span><br>
+							<span class="duration"><b>Duration: </b>1.449s</span><br>
+	</td>
+	<td class="result">
+						<div class="stackTrace" id="79f8971b-cca3-4a56-8717-619546c79085" style="display: block;">
+					</td>
+	</div>
+</tr>
+						<tr>
+			<td class="time">1707133964040</td>
+			<td class="header passed" colspan="4" onClick="toggleElement('ada846a0-37e9-41b0-837e-378bfbfc5046','block');changeSingleIcon('span-ada846a0-37e9-41b0-837e-378bfbfc5046');" title="Click to expand/collapse" style="cursor: pointer;">
+			<div style="float:left;"><i>Class&nbsp;:&nbsp;</i>org.globallogic.gorest.smoketests.PostApiSmokeTest</div>
+			<div style="float:right;">@Test @ with DataProvider : [""] &nbsp;&nbsp;<span id='span-ada846a0-37e9-41b0-837e-378bfbfc5046' class="glyphicon glyphicon-menu-down"></span></div>
+			</td>
+			</tr>
+			<tr>
+	<td class="time">1707133964040</td>
+	<td class="methodTest">
+		<span class="description"><b>Method: </b>testCreatePostForTargetUser</span><br>
+			<span class="description"><b>Description: </b></span><br>
+							<span class="duration"><b>Duration: </b>0.781s</span><br>
+	</td>
+	<td class="result">
+						<div class="stackTrace" id="ada846a0-37e9-41b0-837e-378bfbfc5046" style="display: block;">
+					</td>
+	</div>
+</tr>
+										<tr>
+			<td class="time">1707133974144</td>
+			<td class="header passed" colspan="4" onClick="toggleElement('5d03cc83-8408-4a31-bcfc-e2e29c36db41','block');changeSingleIcon('span-5d03cc83-8408-4a31-bcfc-e2e29c36db41');" title="Click to expand/collapse" style="cursor: pointer;">
+			<div style="float:left;"><i>Class&nbsp;:&nbsp;</i>org.globallogic.gorest.smoketests.ToDoApiSmokeTest</div>
+			<div style="float:right;">@Test @ with DataProvider : [""] &nbsp;&nbsp;<span id='span-5d03cc83-8408-4a31-bcfc-e2e29c36db41' class="glyphicon glyphicon-menu-down"></span></div>
+			</td>
+			</tr>
+			<tr>
+	<td class="time">1707133974144</td>
+	<td class="methodTest">
+		<span class="description"><b>Method: </b>testCreateNewToDoItem</span><br>
+			<span class="description"><b>Description: </b></span><br>
+							<span class="duration"><b>Duration: </b>0.387s</span><br>
+	</td>
+	<td class="result">
+						<div class="stackTrace" id="5d03cc83-8408-4a31-bcfc-e2e29c36db41" style="display: block;">
+					</td>
+	</div>
+</tr>
+						<tr>
+			<td class="time">1707133975285</td>
+			<td class="header passed" colspan="4" onClick="toggleElement('8de39c2d-d21d-4dde-8d0a-237dd25b0979','block');changeSingleIcon('span-8de39c2d-d21d-4dde-8d0a-237dd25b0979');" title="Click to expand/collapse" style="cursor: pointer;">
+			<div style="float:left;"><i>Class&nbsp;:&nbsp;</i>org.globallogic.gorest.smoketests.ToDoApiSmokeTest</div>
+			<div style="float:right;">@Test @ with DataProvider : [""] &nbsp;&nbsp;<span id='span-8de39c2d-d21d-4dde-8d0a-237dd25b0979' class="glyphicon glyphicon-menu-down"></span></div>
+			</td>
+			</tr>
+			<tr>
+	<td class="time">1707133975285</td>
+	<td class="methodTest">
+		<span class="description"><b>Method: </b>testDeleteTargetToDoItem</span><br>
+			<span class="description"><b>Description: </b></span><br>
+							<span class="duration"><b>Duration: </b>0.807s</span><br>
+	</td>
+	<td class="result">
+						<div class="stackTrace" id="8de39c2d-d21d-4dde-8d0a-237dd25b0979" style="display: block;">
+					</td>
+	</div>
+</tr>
+						<tr>
+			<td class="time">1707133979825</td>
+			<td class="header passed" colspan="4" onClick="toggleElement('49eccc51-0157-4c14-ab15-2da302700257','block');changeSingleIcon('span-49eccc51-0157-4c14-ab15-2da302700257');" title="Click to expand/collapse" style="cursor: pointer;">
+			<div style="float:left;"><i>Class&nbsp;:&nbsp;</i>org.globallogic.gorest.smoketests.ToDoApiSmokeTest</div>
+			<div style="float:right;">@Test @ with DataProvider : [""] &nbsp;&nbsp;<span id='span-49eccc51-0157-4c14-ab15-2da302700257' class="glyphicon glyphicon-menu-down"></span></div>
+			</td>
+			</tr>
+			<tr>
+	<td class="time">1707133979825</td>
+	<td class="methodTest">
+		<span class="description"><b>Method: </b>testUpdateTargetToDoItem</span><br>
+			<span class="description"><b>Description: </b></span><br>
+							<span class="duration"><b>Duration: </b>0.818s</span><br>
+	</td>
+	<td class="result">
+						<div class="stackTrace" id="49eccc51-0157-4c14-ab15-2da302700257" style="display: block;">
+					</td>
+	</div>
+</tr>
+						<tr>
+			<td class="time">1707133976952</td>
+			<td class="header passed" colspan="4" onClick="toggleElement('2f239db9-f621-4c4e-bc54-0a8d725e82cf','block');changeSingleIcon('span-2f239db9-f621-4c4e-bc54-0a8d725e82cf');" title="Click to expand/collapse" style="cursor: pointer;">
+			<div style="float:left;"><i>Class&nbsp;:&nbsp;</i>org.globallogic.gorest.smoketests.ToDoApiSmokeTest</div>
+			<div style="float:right;">@Test @ with DataProvider : [""] &nbsp;&nbsp;<span id='span-2f239db9-f621-4c4e-bc54-0a8d725e82cf' class="glyphicon glyphicon-menu-down"></span></div>
+			</td>
+			</tr>
+			<tr>
+	<td class="time">1707133976952</td>
+	<td class="methodTest">
+		<span class="description"><b>Method: </b>testRetrieveAllToDos</span><br>
+			<span class="description"><b>Description: </b></span><br>
+							<span class="duration"><b>Duration: </b>0.672s</span><br>
+	</td>
+	<td class="result">
+						<div class="stackTrace" id="2f239db9-f621-4c4e-bc54-0a8d725e82cf" style="display: block;">
+					</td>
+	</div>
+</tr>
+						<tr>
+			<td class="time">1707133978388</td>
+			<td class="header passed" colspan="4" onClick="toggleElement('e71d40e7-2348-4caf-a542-192cb46bf06e','block');changeSingleIcon('span-e71d40e7-2348-4caf-a542-192cb46bf06e');" title="Click to expand/collapse" style="cursor: pointer;">
+			<div style="float:left;"><i>Class&nbsp;:&nbsp;</i>org.globallogic.gorest.smoketests.ToDoApiSmokeTest</div>
+			<div style="float:right;">@Test @ with DataProvider : [""] &nbsp;&nbsp;<span id='span-e71d40e7-2348-4caf-a542-192cb46bf06e' class="glyphicon glyphicon-menu-down"></span></div>
+			</td>
+			</tr>
+			<tr>
+	<td class="time">1707133978388</td>
+	<td class="methodTest">
+		<span class="description"><b>Method: </b>testRetrieveToDosFromTargetPage</span><br>
+			<span class="description"><b>Description: </b></span><br>
+							<span class="duration"><b>Duration: </b>0.410s</span><br>
+	</td>
+	<td class="result">
+						<div class="stackTrace" id="e71d40e7-2348-4caf-a542-192cb46bf06e" style="display: block;">
+					</td>
+	</div>
+</tr>
+										<tr>
+			<td class="time">1707133983219</td>
+			<td class="header passed" colspan="4" onClick="toggleElement('3296122f-0dab-4eb5-ab49-9147a986a499','block');changeSingleIcon('span-3296122f-0dab-4eb5-ab49-9147a986a499');" title="Click to expand/collapse" style="cursor: pointer;">
+			<div style="float:left;"><i>Class&nbsp;:&nbsp;</i>org.globallogic.gorest.smoketests.UserApiSmokeTest</div>
+			<div style="float:right;">@Test @ with DataProvider : [""] &nbsp;&nbsp;<span id='span-3296122f-0dab-4eb5-ab49-9147a986a499' class="glyphicon glyphicon-menu-down"></span></div>
+			</td>
+			</tr>
+			<tr>
+	<td class="time">1707133983219</td>
+	<td class="methodTest">
+		<span class="description"><b>Method: </b>testUpdatedUserEmail</span><br>
+			<span class="description"><b>Description: </b></span><br>
+							<span class="duration"><b>Duration: </b>0.780s</span><br>
+	</td>
+	<td class="result">
+						<div class="stackTrace" id="3296122f-0dab-4eb5-ab49-9147a986a499" style="display: block;">
+					</td>
+	</div>
+</tr>
+						<tr>
+			<td class="time">1707133981007</td>
+			<td class="header passed" colspan="4" onClick="toggleElement('64a775cf-911c-4bcd-8c49-d7b9d583b33a','block');changeSingleIcon('span-64a775cf-911c-4bcd-8c49-d7b9d583b33a');" title="Click to expand/collapse" style="cursor: pointer;">
+			<div style="float:left;"><i>Class&nbsp;:&nbsp;</i>org.globallogic.gorest.smoketests.UserApiSmokeTest</div>
+			<div style="float:right;">@Test @ with DataProvider : [""] &nbsp;&nbsp;<span id='span-64a775cf-911c-4bcd-8c49-d7b9d583b33a' class="glyphicon glyphicon-menu-down"></span></div>
+			</td>
+			</tr>
+			<tr>
+	<td class="time">1707133981007</td>
+	<td class="methodTest">
+		<span class="description"><b>Method: </b>testCreateNewUserAndReturnId</span><br>
+			<span class="description"><b>Description: </b></span><br>
+							<span class="duration"><b>Duration: </b>0.371s</span><br>
+	</td>
+	<td class="result">
+						<div class="stackTrace" id="64a775cf-911c-4bcd-8c49-d7b9d583b33a" style="display: block;">
+					</td>
+	</div>
+</tr>
+						<tr>
+			<td class="time">1707133982542</td>
+			<td class="header passed" colspan="4" onClick="toggleElement('3593f0d6-c81c-41ad-97f0-c72108bae71b','block');changeSingleIcon('span-3593f0d6-c81c-41ad-97f0-c72108bae71b');" title="Click to expand/collapse" style="cursor: pointer;">
+			<div style="float:left;"><i>Class&nbsp;:&nbsp;</i>org.globallogic.gorest.smoketests.UserApiSmokeTest</div>
+			<div style="float:right;">@Test @ with DataProvider : [""] &nbsp;&nbsp;<span id='span-3593f0d6-c81c-41ad-97f0-c72108bae71b' class="glyphicon glyphicon-menu-down"></span></div>
+			</td>
+			</tr>
+			<tr>
+	<td class="time">1707133982542</td>
+	<td class="methodTest">
+		<span class="description"><b>Method: </b>testGetUsersFromTargetPage</span><br>
+			<span class="description"><b>Description: </b></span><br>
+							<span class="duration"><b>Duration: </b>0.676s</span><br>
+	</td>
+	<td class="result">
+						<div class="stackTrace" id="3593f0d6-c81c-41ad-97f0-c72108bae71b" style="display: block;">
+					</td>
+	</div>
+</tr>
+						<tr>
+			<td class="time">1707133981379</td>
+			<td class="header passed" colspan="4" onClick="toggleElement('c2c24b3b-e0fc-4cca-a004-bebc4c911cec','block');changeSingleIcon('span-c2c24b3b-e0fc-4cca-a004-bebc4c911cec');" title="Click to expand/collapse" style="cursor: pointer;">
+			<div style="float:left;"><i>Class&nbsp;:&nbsp;</i>org.globallogic.gorest.smoketests.UserApiSmokeTest</div>
+			<div style="float:right;">@Test @ with DataProvider : [""] &nbsp;&nbsp;<span id='span-c2c24b3b-e0fc-4cca-a004-bebc4c911cec' class="glyphicon glyphicon-menu-down"></span></div>
+			</td>
+			</tr>
+			<tr>
+	<td class="time">1707133981379</td>
+	<td class="methodTest">
+		<span class="description"><b>Method: </b>testDeleteTargetUser</span><br>
+			<span class="description"><b>Description: </b></span><br>
+							<span class="duration"><b>Duration: </b>0.790s</span><br>
+	</td>
+	<td class="result">
+						<div class="stackTrace" id="c2c24b3b-e0fc-4cca-a004-bebc4c911cec" style="display: block;">
+					</td>
+	</div>
+</tr>
+						<tr>
+			<td class="time">1707133982172</td>
+			<td class="header passed" colspan="4" onClick="toggleElement('23a531eb-df63-45ab-9664-e9735b767080','block');changeSingleIcon('span-23a531eb-df63-45ab-9664-e9735b767080');" title="Click to expand/collapse" style="cursor: pointer;">
+			<div style="float:left;"><i>Class&nbsp;:&nbsp;</i>org.globallogic.gorest.smoketests.UserApiSmokeTest</div>
+			<div style="float:right;">@Test @ with DataProvider : [""] &nbsp;&nbsp;<span id='span-23a531eb-df63-45ab-9664-e9735b767080' class="glyphicon glyphicon-menu-down"></span></div>
+			</td>
+			</tr>
+			<tr>
+	<td class="time">1707133982172</td>
+	<td class="methodTest">
+		<span class="description"><b>Method: </b>testGetLatestUsers</span><br>
+			<span class="description"><b>Description: </b></span><br>
+							<span class="duration"><b>Duration: </b>0.368s</span><br>
+	</td>
+	<td class="result">
+						<div class="stackTrace" id="23a531eb-df63-45ab-9664-e9735b767080" style="display: block;">
+					</td>
+	</div>
+</tr>
+					  
+	</tbody>
+	</table>
+</div>
+</body>
+</html>
