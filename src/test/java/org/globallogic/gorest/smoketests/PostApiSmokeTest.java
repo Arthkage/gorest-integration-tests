@@ -15,6 +15,8 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
+import static org.globallogic.gorest.core.ApiMain.property;
+
 public class PostApiSmokeTest extends ApiTestMain {
 
     @BeforeClass
@@ -26,12 +28,15 @@ public class PostApiSmokeTest extends ApiTestMain {
 
     @BeforeMethod
     public void postTestSetup() {
-        String email = String.format("posttester%s@mail.com", RandomStringUtils.randomAlphanumeric(5));
+        String email = String.format(property.getTestData("post_user_mail"),
+                RandomStringUtils.randomAlphanumeric(5));
 
-        userRequestPayload = new UserRequestDTO("Post Tester", email, "male", "active");
+        userRequestPayload = new UserRequestDTO(property.getTestData("post_user_name"), email,
+                property.getTestData("gender_male"), property.getTestData("status_active"));
         userResponse = userAPI.createUser(userRequestPayload);
 
-        postRequestPayload = new PostRequestDTO(userResponse.id(), "Test Post Title", "Test Post Body");
+        postRequestPayload = new PostRequestDTO(userResponse.id(), property.getTestData("post_title"),
+                property.getTestData("post_body"));
     }
 
     @AfterMethod
@@ -42,7 +47,7 @@ public class PostApiSmokeTest extends ApiTestMain {
     @Test
     public void testReturnLatestPosts() {
         postAPI.getPosts();
-        Assert.assertEquals(postAPI.getResponse().getStatusCode(), 200);
+        Assert.assertEquals(postAPI.getResponse().getStatusCode(), OK_STATUS);
     }
 
     @Test
@@ -51,7 +56,7 @@ public class PostApiSmokeTest extends ApiTestMain {
         int postsPerPage = 2;
 
         List<PostResponseDTO> posts = postAPI.getPosts(targetPage, postsPerPage);
-        Assert.assertEquals(postAPI.getResponse().getStatusCode(), 200);
+        Assert.assertEquals(postAPI.getResponse().getStatusCode(), OK_STATUS);
         Assert.assertEquals(posts.size(), postsPerPage);
     }
 
@@ -59,7 +64,7 @@ public class PostApiSmokeTest extends ApiTestMain {
     public void testCreatePostForTargetUser() {
         postResponse = postAPI.createPost(userResponse, postRequestPayload);
 
-        Assert.assertEquals(postAPI.getResponse().getStatusCode(), 201);
+        Assert.assertEquals(postAPI.getResponse().getStatusCode(), CREATED_STATUS);
         Assert.assertNotNull(postResponse.id());
     }
 
@@ -67,11 +72,12 @@ public class PostApiSmokeTest extends ApiTestMain {
     public void testUpdatePostForTargetUser() {
         postResponse = postAPI.createPost(userResponse, postRequestPayload);
 
-        PostRequestDTO postUpdatePayload = new PostRequestDTO(userResponse.id(), "Test Updated Post Title", "Test Updated Post Body");
+        PostRequestDTO postUpdatePayload = new PostRequestDTO(userResponse.id(),
+                property.getTestData("post_upd_title"), property.getTestData("post_upd_body"));
         PostResponseDTO newPost = postAPI.updatePost(postResponse.id(), postUpdatePayload);
 
-        Assert.assertEquals(postAPI.getResponse().getStatusCode(), 200);
-        Assert.assertEquals(newPost.body(), "Test Updated Post Body");
+        Assert.assertEquals(postAPI.getResponse().getStatusCode(), OK_STATUS);
+        Assert.assertEquals(newPost.body(), property.getTestData("post_upd_body"));
 
     }
 
@@ -80,10 +86,11 @@ public class PostApiSmokeTest extends ApiTestMain {
 
         postResponse = postAPI.createPost(userResponse, postRequestPayload);
 
-        PostRequestDTO postDeletePayload = new PostRequestDTO(postResponse.user_id(), postResponse.title(), postResponse.body());
+        PostRequestDTO postDeletePayload = new PostRequestDTO(postResponse.user_id(), postResponse.title(),
+                postResponse.body());
         String deletePost = postAPI.deletePost(postResponse.id(), postDeletePayload);
 
-        Assert.assertEquals(postAPI.getResponse().getStatusCode(), 204);
+        Assert.assertEquals(postAPI.getResponse().getStatusCode(), DELETED_STATUS);
         Assert.assertEquals(deletePost, "");
 
     }

@@ -12,6 +12,8 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
+import static org.globallogic.gorest.core.ApiMain.property;
+
 public class UserApiSmokeTest extends ApiTestMain {
 
     @BeforeClass
@@ -22,14 +24,16 @@ public class UserApiSmokeTest extends ApiTestMain {
 
     @BeforeMethod
     public void userTestSetup() {
-        String email = String.format("oompaloompa%s@mail.com", RandomStringUtils.randomAlphanumeric(5));
-        userRequestPayload = new UserRequestDTO("Oompa Loompa", email, "female", "active");
+        String email = String.format(property.getTestData("user_mail"),
+                RandomStringUtils.randomAlphanumeric(5));
+        userRequestPayload = new UserRequestDTO(property.getTestData( "user_name"), email,
+                property.getTestData("gender_female"), property.getTestData("status_active"));
     }
 
     @Test
     public void testGetLatestUsers() {
         userAPI.getUsers();
-        Assert.assertEquals(userAPI.getResponse().getStatusCode(), okStatusCode);
+        Assert.assertEquals(userAPI.getResponse().getStatusCode(), OK_STATUS);
     }
 
     @Test
@@ -38,14 +42,14 @@ public class UserApiSmokeTest extends ApiTestMain {
         int usersPerPage = 10;
 
         List<UserResponseDTO> users = userAPI.getUsers(targetPage, usersPerPage);
-        Assert.assertEquals(userAPI.getResponse().getStatusCode(), okStatusCode);
+        Assert.assertEquals(userAPI.getResponse().getStatusCode(), OK_STATUS);
         Assert.assertEquals(users.size(), usersPerPage);
     }
 
     @Test
     public void testCreateNewUserAndReturnId() {
         UserResponseDTO newUser = userAPI.createUser(userRequestPayload);
-        Assert.assertEquals(userAPI.getResponse().getStatusCode(), createdStatusCode);
+        Assert.assertEquals(userAPI.getResponse().getStatusCode(), CREATED_STATUS);
         Assert.assertNotNull(newUser.id());
     }
 
@@ -56,13 +60,14 @@ public class UserApiSmokeTest extends ApiTestMain {
 
         int userId = newUser.id();
 
-        String newEmail = String.format("updatedLoompa%s@gmail.com", RandomStringUtils.randomAlphanumeric(5));
+        String newEmail = String.format(property.getTestData("user_upd_mail"), RandomStringUtils.randomAlphanumeric(5));
 
-        UserRequestDTO updatedPayload = new UserRequestDTO("Oompa Loompa", newEmail, "female", "active");
+        UserRequestDTO updatedPayload = new UserRequestDTO(property.getTestData("user_name"), newEmail,
+                property.getTestData("gender_female"), property.getTestData("status_active"));
         UserResponseDTO updatedUser = userAPI.updatedUser(userId, updatedPayload);
         System.out.println(updatedUser);
 
-        Assert.assertEquals(userAPI.getResponse().getStatusCode(), updatedStatusCode);
+        Assert.assertEquals(userAPI.getResponse().getStatusCode(), UPDATED_STATUS);
         Assert.assertEquals(newEmail, updatedUser.email());
     }
 
@@ -76,9 +81,8 @@ public class UserApiSmokeTest extends ApiTestMain {
 
         UserRequestDTO deletePayload = new UserRequestDTO(newUser.name(), newUser.email(), newUser.gender(), newUser.status());
         String deletedUser = userAPI.deleteUser(userId, deletePayload);
-        System.out.println("User deleted");
 
-        Assert.assertEquals(userAPI.getResponse().getStatusCode(), deletedStatusCode);
+        Assert.assertEquals(userAPI.getResponse().getStatusCode(), DELETED_STATUS);
         Assert.assertEquals(deletedUser, "");
 
     }

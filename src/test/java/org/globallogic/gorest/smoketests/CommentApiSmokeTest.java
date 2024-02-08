@@ -17,6 +17,8 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
+import static org.globallogic.gorest.core.ApiMain.property;
+
 public class CommentApiSmokeTest extends ApiTestMain {
 
     @BeforeClass
@@ -29,15 +31,21 @@ public class CommentApiSmokeTest extends ApiTestMain {
 
     @BeforeMethod
     public void commentTestSetup() {
-        String email = String.format("commenttester%s@mail.com", RandomStringUtils.randomAlphanumeric(5));
+        String email = String.format(property.getTestData("comment_user_mail"),
+                RandomStringUtils.randomAlphanumeric(5));
 
-        userRequestPayload = new UserRequestDTO("Comment Tester", email, "male", "active");
+        userRequestPayload = new UserRequestDTO(property.getTestData("comment_user_name"), email,
+                property.getTestData("gender_male"), property.getTestData("status_inactive"));
+
         userResponse = userAPI.createUser(userRequestPayload);
 
-        postRequestPayload = new PostRequestDTO(userResponse.id(), "Test Post Title", "Test Post Body");
-        postResponse = postAPI.createPost(userResponse,postRequestPayload);
+        postRequestPayload = new PostRequestDTO(userResponse.id(), property.getTestData("post_title"),
+                property.getTestData("post_body"));
 
-        commentRequestPayload = new CommentRequestDTO(postResponse.id(), userResponse.name(), userResponse.email(), "Test Comment body!");
+        postResponse = postAPI.createPost(userResponse, postRequestPayload);
+
+        commentRequestPayload = new CommentRequestDTO(postResponse.id(), userResponse.name(), userResponse.email(),
+                property.getTestData("comment_body"));
     }
 
     @AfterMethod
@@ -49,7 +57,7 @@ public class CommentApiSmokeTest extends ApiTestMain {
     @Test
     public void testGetComments() {
         commentAPI.getComments();
-        Assert.assertEquals(commentAPI.getResponse().getStatusCode(), 200);
+        Assert.assertEquals(commentAPI.getResponse().getStatusCode(), OK_STATUS);
     }
 
     @Test
@@ -58,7 +66,7 @@ public class CommentApiSmokeTest extends ApiTestMain {
         int commentsPerPage = 1;
 
         List<CommentResponseDTO> comments = commentAPI.getComments(targetPage, commentsPerPage);
-        Assert.assertEquals(commentAPI.getResponse().getStatusCode(), 200);
+        Assert.assertEquals(commentAPI.getResponse().getStatusCode(), OK_STATUS);
         Assert.assertEquals(comments.size(), commentsPerPage);
     }
 
@@ -66,7 +74,7 @@ public class CommentApiSmokeTest extends ApiTestMain {
     public void testCreatingComments() {
 
         commentResponse = commentAPI.createComment(postResponse, commentRequestPayload);
-        Assert.assertEquals(commentAPI.getResponse().getStatusCode(), 201);
+        Assert.assertEquals(commentAPI.getResponse().getStatusCode(), CREATED_STATUS);
         Assert.assertNotNull(commentResponse.id());
     }
 
@@ -74,11 +82,12 @@ public class CommentApiSmokeTest extends ApiTestMain {
     public void testUpdateComment() {
         commentResponse = commentAPI.createComment(postResponse, commentRequestPayload);
 
-        CommentRequestDTO updatedCommentPayload = new CommentRequestDTO(postResponse.id(), userResponse.name(), userResponse.email(), "Test Updated Comment Body");
+        CommentRequestDTO updatedCommentPayload = new CommentRequestDTO(postResponse.id(), userResponse.name(),
+                userResponse.email(), property.getTestData("comment_upd_body"));
         CommentResponseDTO newComment = commentAPI.updateComment(commentResponse.id(), updatedCommentPayload);
 
-        Assert.assertEquals(commentAPI.getResponse().getStatusCode(), 200);
-        Assert.assertEquals(newComment.body(), "Test Updated Comment Body");
+        Assert.assertEquals(commentAPI.getResponse().getStatusCode(), UPDATED_STATUS);
+        Assert.assertEquals(newComment.body(), property.getTestData("comment_upd_body"));
     }
 
     @Test
@@ -86,10 +95,11 @@ public class CommentApiSmokeTest extends ApiTestMain {
 
         commentResponse = commentAPI.createComment(postResponse, commentRequestPayload);
 
-        CommentRequestDTO commentDeletePayload = new CommentRequestDTO(commentResponse.post_id(), userResponse.name(), userResponse.email(), commentResponse.body());
+        CommentRequestDTO commentDeletePayload = new CommentRequestDTO(commentResponse.post_id(),
+                userResponse.name(), userResponse.email(), commentResponse.body());
         String deleteComment = commentAPI.deleteComment(commentResponse.id(), commentDeletePayload);
 
-        Assert.assertEquals(commentAPI.getResponse().getStatusCode(), 204);
+        Assert.assertEquals(commentAPI.getResponse().getStatusCode(), DELETED_STATUS);
         Assert.assertEquals(deleteComment, "");
     }
 }

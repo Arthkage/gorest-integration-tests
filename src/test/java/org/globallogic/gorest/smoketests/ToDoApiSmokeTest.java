@@ -8,6 +8,7 @@ import org.globallogic.gorest.core.ApiTestMain;
 import org.globallogic.gorest.dtos.todo.ToDoRequestDTO;
 import org.globallogic.gorest.dtos.todo.ToDoResponseDTO;
 import org.globallogic.gorest.dtos.user.UserRequestDTO;
+import org.globallogic.gorest.utils.DateAndTimeFormatter;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -18,8 +19,13 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Logger;
+
+import static org.globallogic.gorest.core.ApiMain.property;
 
 public class ToDoApiSmokeTest extends ApiTestMain {
+
+    DateAndTimeFormatter currentDateAndTime;
 
     @BeforeClass
     public void toDoClassSetup() {
@@ -27,19 +33,22 @@ public class ToDoApiSmokeTest extends ApiTestMain {
         userAPI = new UserAPI(token);
         postAPI = new PostAPI(token);
         toDoAPI = new ToDoAPI(token);
+        currentDateAndTime = new DateAndTimeFormatter();
     }
 
     @BeforeMethod
     public void toDoTestSetup() {
-        String email = String.format("todotester%s@mail.com", RandomStringUtils.randomAlphanumeric(5));
-        DateFormat dateTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date date = new Date();
-        String currentDateTime = dateTime.format(date);
+        String email = String.format(property.getTestData("todo_user_mail"),
+                RandomStringUtils.randomAlphanumeric(5));
 
-        userRequestPayload = new UserRequestDTO("ToDo Tester", email, "male", "active");
+        String currentDateTime = currentDateAndTime.returnCurrentDateAndTime();
+
+        userRequestPayload = new UserRequestDTO(property.getTestData("todo_user_name"), email,
+                property.getTestData("gender_female"), property.getTestData("status_active"));
         userResponse = userAPI.createUser(userRequestPayload);
 
-        toDoRequestPayload = new ToDoRequestDTO(userResponse.id(), "Test ToDo Title", currentDateTime, "pending");
+        toDoRequestPayload = new ToDoRequestDTO(userResponse.id(), property.getTestData("todo_title"),
+                currentDateTime, property.getTestData("status_pending"));
     }
 
     @AfterMethod
@@ -51,7 +60,7 @@ public class ToDoApiSmokeTest extends ApiTestMain {
 
     public void testRetrieveAllToDos() {
         toDoAPI.getToDos();
-        Assert.assertEquals(toDoAPI.getResponse().getStatusCode(), 200);
+        Assert.assertEquals(toDoAPI.getResponse().getStatusCode(), OK_STATUS);
     }
 
     @Test
@@ -60,7 +69,7 @@ public class ToDoApiSmokeTest extends ApiTestMain {
         int commentsPerPage = 2;
 
         List<ToDoResponseDTO> todos = toDoAPI.getToDos(targetPage, commentsPerPage);
-        Assert.assertEquals(toDoAPI.getResponse().statusCode(), 200);
+        Assert.assertEquals(toDoAPI.getResponse().statusCode(), OK_STATUS);
         Assert.assertEquals(todos.size(), commentsPerPage);
     }
 
@@ -69,7 +78,7 @@ public class ToDoApiSmokeTest extends ApiTestMain {
 
         toDoResponse = toDoAPI.createTodo(userResponse, toDoRequestPayload);
 
-        Assert.assertEquals(toDoAPI.getResponse().statusCode(), 201);
+        Assert.assertEquals(toDoAPI.getResponse().statusCode(), CREATED_STATUS);
         Assert.assertNotNull(toDoResponse.id());
     }
 
@@ -77,16 +86,15 @@ public class ToDoApiSmokeTest extends ApiTestMain {
     public void testUpdateTargetToDoItem() {
         toDoResponse = toDoAPI.createTodo(userResponse, toDoRequestPayload);
 
-        DateFormat dateTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date date = new Date();
-        String updatedDateTime = dateTime.format(date);
+        String updatedDateTime = currentDateAndTime.returnCurrentDateAndTime();
 
-        ToDoRequestDTO updatedToDoPayload = new ToDoRequestDTO(userResponse.id(), "Test Updated ToDo Title", updatedDateTime, "completed");
+        ToDoRequestDTO updatedToDoPayload = new ToDoRequestDTO(userResponse.id(),
+                property.getTestData("todo_upd_title"), updatedDateTime, property.getTestData("status_completed"));
         ToDoResponseDTO updatedToDo = toDoAPI.updateToDo(toDoResponse.id(), updatedToDoPayload);
 
-        Assert.assertEquals(toDoAPI.getResponse().statusCode(), 200);
-        Assert.assertEquals(updatedToDo.title(), "Test Updated ToDo Title");
-        Assert.assertEquals(updatedToDo.status(), "completed");
+        Assert.assertEquals(toDoAPI.getResponse().statusCode(), UPDATED_STATUS);
+        Assert.assertEquals(updatedToDo.title(), property.getTestData("todo_upd_title"));
+        Assert.assertEquals(updatedToDo.status(), property.getTestData("status_completed"));
     }
 
     @Test
@@ -96,7 +104,7 @@ public class ToDoApiSmokeTest extends ApiTestMain {
         ToDoRequestDTO deleteToDoPayload = new ToDoRequestDTO(userResponse.id(), toDoResponse.title(), toDoResponse.due_on(), toDoResponse.status());
         String deletedToDo = toDoAPI.deletePost(toDoResponse.id(), deleteToDoPayload);
 
-        Assert.assertEquals(toDoAPI.getResponse().statusCode(), 204);
+        Assert.assertEquals(toDoAPI.getResponse().statusCode(), DELETED_STATUS);
         Assert.assertEquals(deletedToDo, "");
     }
 }
