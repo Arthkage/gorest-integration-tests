@@ -9,26 +9,26 @@ import java.util.List;
 
 public class PostAPI extends ApiMain {
 
-    private static final String ENDPOINT = "/posts";
+    private static final String ENDPOINT = property.getConfig("post_endpoint");
     public PostAPI(String token) {
         super(token);
     }
 
     public void getPosts() {
         configuration(ENDPOINT);
-        logger.info("...getting posts...");
+        LOGGER.info("...getting posts...");
         response = request
                 .get()
                 .then()
                 .extract()
                 .response();
-        logger.info("...list of posts: " + response.getBody().asString());
+        LOGGER.info("...list of posts: " + response.getBody().asString());
     }
 
     public List<PostResponseDTO> getPosts(int targetPage, int postsPerPage) {
 
         configuration(ENDPOINT);
-        logger.info("...getting posts from page " + targetPage + " with a number of "+ postsPerPage +" entries per page...");
+        LOGGER.info("...getting posts from page " + targetPage + " with a number of "+ postsPerPage +" entries per page...");
         response = request
                 .queryParam("page", targetPage)
                 .queryParam("per_page", postsPerPage)
@@ -36,13 +36,13 @@ public class PostAPI extends ApiMain {
                 .then()
                 .extract()
                 .response();
-        logger.info("...list of posts: " + response.getBody().asString());
+        LOGGER.info("...list of posts: " + response.getBody().asString());
         return response.jsonPath().getList("", PostResponseDTO.class);
     }
 
     public PostResponseDTO createPost(UserResponseDTO newUser, PostRequestDTO postRequestPayload) {
         configuration(ENDPOINT);
-        logger.info("...creating new post...");
+        LOGGER.info("...creating new post...");
         response = request
                 .body(postRequestPayload)
                 .queryParam("{user_id}", newUser.id())
@@ -50,14 +50,14 @@ public class PostAPI extends ApiMain {
                 .then()
                 .extract()
                 .response();
-        logger.info("...post with id={} has been created...", response.jsonPath().getInt("id"));
-        logger.info("...post content: " + response.getBody().asString());
+        LOGGER.info("...post with id={} has been created...", response.jsonPath().getInt("id"));
+        LOGGER.info("...post content: " + response.getBody().asString());
         return response.as(PostResponseDTO.class);
     }
 
     public PostResponseDTO updatePost(int id, PostRequestDTO postUpdatePayload) {
         configuration(ENDPOINT);
-        logger.info("...updating post...");
+        LOGGER.info("...updating post...");
         response = request
                 .basePath(ENDPOINT + "/" + "{id}")
                 .pathParams("id", String.valueOf(id))
@@ -66,13 +66,13 @@ public class PostAPI extends ApiMain {
                 .then()
                 .extract()
                 .response();
-        logger.info("...update post contains: " + response.getBody().asString());
+        LOGGER.info("...update post contains: " + response.getBody().asString());
         return response.as(PostResponseDTO.class);
     }
 
     public String deletePost(int id, PostRequestDTO deletePayload) {
         configuration(ENDPOINT);
-        logger.info("...deleting target post...");
+        LOGGER.info("...deleting target post...");
         response = request
                 .basePath(ENDPOINT + "/" + "{id}")
                 .pathParams("id", String.valueOf(id))
@@ -81,7 +81,7 @@ public class PostAPI extends ApiMain {
                 .then()
                 .extract()
                 .response();
-        logger.info("...post with id={} deleted...", id);
+        LOGGER.info("...post with id={} deleted...", id);
         return response.getBody().asString();
     }
 }

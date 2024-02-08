@@ -7,7 +7,7 @@ import org.globallogic.gorest.dtos.user.UserResponseDTO;
 import java.util.List;
 
 public class UserAPI extends ApiMain {
-    private static final String ENDPOINT = "/users";
+    private static final String ENDPOINT = property.getConfig("user_endpoint");
 
     public UserAPI(String token) {
         super(token);
@@ -15,19 +15,19 @@ public class UserAPI extends ApiMain {
 
     public void getUsers() {
         configuration(ENDPOINT);
-        logger.info("...getting users...");
+        LOGGER.info("...getting users...");
         response = request
                 .get()
                 .then()
                 .extract()
                 .response();
-        logger.info("...list of users: %s" + response.getBody().asString());
+        LOGGER.info("...list of users: %s" + response.getBody().asString());
     }
 
 
     public List<UserResponseDTO> getUsers(int targetPage, int usersPerPage) {
         configuration(ENDPOINT);
-        logger.info("...getting users from page "+targetPage+" with a number of "+usersPerPage+" entries...");
+        LOGGER.info("...getting users from page "+targetPage+" with a number of "+usersPerPage+" entries...");
         response = request
                 .queryParam("page", targetPage)
                 .queryParam("per_page", usersPerPage)
@@ -35,27 +35,27 @@ public class UserAPI extends ApiMain {
                 .then()
                 .extract()
                 .response();
-        logger.info("...list of users: " + response.getBody().asString());
+        LOGGER.info("...list of users: " + response.getBody().asString());
         return response.jsonPath().getList("", UserResponseDTO.class);
     }
 
     public UserResponseDTO createUser(UserRequestDTO requestPayload) {
         configuration(ENDPOINT);
-        logger.info("...creating new user...");
+        LOGGER.info("...creating new user...");
         response = request
                 .body(requestPayload)
                 .post()
                 .then()
                 .extract()
                 .response();
-        logger.info("...user with id={} created...", response.jsonPath().getInt("id"));
-        logger.info("...user content: " + response.getBody().asString() + "...");
+        LOGGER.info("...user with id={} created...", response.jsonPath().getInt("id"));
+        LOGGER.info("...user content: " + response.getBody().asString() + "...");
         return response.as(UserResponseDTO.class);
     }
 
     public UserResponseDTO updatedUser(int id, UserRequestDTO updatedPayload) {
         configuration(ENDPOINT);
-        logger.info("...updating user...");
+        LOGGER.info("...updating user...");
         response = request
                 .basePath(ENDPOINT + "/" + "{id}")
                 .pathParams("id", String.valueOf(id))
@@ -64,14 +64,14 @@ public class UserAPI extends ApiMain {
                 .then()
                 .extract()
                 .response();
-        logger.info("...user with id={} updated...", id);
-        logger.info("...new user content: " + response.getBody().asString());
+        LOGGER.info("...user with id={} updated...", id);
+        LOGGER.info("...new user content: " + response.getBody().asString());
         return response.as(UserResponseDTO.class);
     }
 
     public String deleteUser(int id, UserRequestDTO deletePayload) {
         configuration(ENDPOINT);
-        logger.info("...deleting target user...");
+        LOGGER.info("...deleting target user...");
         response = request
                 .basePath(ENDPOINT + "/" + "{id}")
                 .pathParams("id", String.valueOf(id))
@@ -80,7 +80,7 @@ public class UserAPI extends ApiMain {
                 .then()
                 .extract()
                 .response();
-        logger.info("...user with id={} deleted...", id);
+        LOGGER.info("...user with id={} deleted...", id);
         return response.getBody().asString();
     }
 }
