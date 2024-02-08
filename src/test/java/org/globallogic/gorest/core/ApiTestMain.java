@@ -33,8 +33,8 @@ public class ApiTestMain {
     protected ToDoRequestDTO toDoRequestPayload;
     protected ToDoResponseDTO toDoResponse;
 
-    protected final int okStatusCode = 200;
-    protected final int createdStatusCode = 201;
-    protected final int updatedStatusCode = 200;
-    protected final int deletedStatusCode = 204;
+    protected final int OK_STATUS = 200;
+    protected final int CREATED_STATUS = 201;
+    protected final int UPDATED_STATUS = 200;
+    protected final int DELETED_STATUS = 204;
 }
