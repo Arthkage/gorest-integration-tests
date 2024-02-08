@@ -4,13 +4,13 @@ target/
 !**/src/test/**/target/
 
 ### IntelliJ IDEA ###
-/.idea/
+.idea/
 *.iws
 *.iml
 *.ipr
 
 ### TestNG ###
-/test-output/
+test-output/
 
 ### Eclipse ###
 .apt_generated
